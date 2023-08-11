@@ -17,6 +17,13 @@ This project contains a set of lightweight vimscript functions to expand vim fun
 
 - **Indentation Improvement**: The default indentation has been adjusted to use a 2-space indent, offering a more compact and streamlined coding layout.
 
+```
+ChangeLog v0.0.2
+
+- Added support for async javascript function names
+- Trimming of larger than 25 characters filename paths
+```
+
 ## Installation
 You can choose one of the following methods to install this Vim configuration:
 

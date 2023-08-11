@@ -1,4 +1,4 @@
-" VIMer v0.0.1
+" VIMer v0.0.2
 " 
 " bernigf@gmail.com
 
@@ -78,15 +78,27 @@ function! GetCurrentFunction()
     let lnum = line('.')
     while lnum > 0
         let line_content = getline(lnum)
-        if line_content =~? '\v^(def |function )'
+        if line_content =~? '\v^(def |function |async function )'
+
             let function_name = ""
+
+            " Python functions
             if line_content =~? '^def '
                 let function_name = substitute(line_content, '^def\s\+', '', '')
             endif
+
+            " Javascript functions
             if line_content =~? '^function '
                 let function_name = substitute(line_content, '^function\s\+', '', '')
             endif
+
+            " Javascript Async functions
+            if line_content =~? '^async function '
+                let function_name = substitute(line_content, '^async function\s\+', '', '')
+            endif
+
             let function_name_short = strpart(function_name, 0, 50)
+
             " echo "Function name: " . function_name
             return function_name_short
         endif
@@ -96,8 +108,17 @@ function! GetCurrentFunction()
     " echo "No function found."
 endfunction
 
+function! StatusLineFile()
+  let filename = expand('%:p')
+  if strlen(filename) > 25
+    let filename = fnamemodify(filename, ':t')
+  endif
+  return filename
+endfunction
+
 set laststatus=2
-set statusline=%<%#FileNameColor#%f\ >>\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
+"set statusline=%<%#FileNameColor#%f\ >>\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
+set statusline=%<%#FileNameColor#\ %{StatusLineFile()}\ >>\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
 
 highlight FileNameColor guifg=black ctermfg=black guibg=white ctermbg=white
 highlight FunctionColor guifg=white ctermfg=white guibg=darkgreen ctermbg=darkgreen

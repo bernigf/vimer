@@ -1,7 +1,7 @@
 #!/bin/bash
 
 name="vimer"
-version="0.0.1"
+version="0.0.2"
 
 folder_main=".vim"
 folder_colors="colors"
