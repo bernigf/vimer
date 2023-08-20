@@ -25,7 +25,8 @@ ChangeLog v0.0.2
 
 ChangeLog v0.0.3
 
-- Improved statusline
+- Improved statusline colors and trimming for vertical split
+- Improved statusline cursor/line/percentage
 ```
 
 ## Installation

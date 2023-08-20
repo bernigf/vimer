@@ -97,7 +97,7 @@ function! GetCurrentFunction()
                 let function_name = substitute(line_content, '^async function\s\+', '', '')
             endif
 
-            let function_name_max = 25
+            let function_name_max = 35
             let function_name_short = strpart(function_name, 0, function_name_max)
 
             " echo "Function name: " . function_name
@@ -118,8 +118,10 @@ function! StatusLineFile()
 endfunction
 
 set laststatus=2
+
+highlight CursorColor guifg=green ctermfg=green gui=bold cterm=bold
 "set statusline=%<%#FileNameColor#%f\ >>\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
-set statusline=%<%#FileNameColor#\ <\ %{StatusLineFile()}\ >\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#\ %h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
+set statusline=%<%#FileNameColor#\ <\ %{StatusLineFile()}\ >\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%=\ [%#CursorColor#%v%#StatusBarColor#:%l/%L][%p%%]
 
 highlight FileNameColor guifg=black ctermfg=black guibg=white ctermbg=white gui=bold cterm=bold
 highlight FunctionColor guifg=white ctermfg=235 guibg=darkgreen ctermbg=darkgreen gui=bold cterm=bold
