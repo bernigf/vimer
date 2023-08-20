@@ -1,4 +1,4 @@
-" VIMer v0.0.2
+" VIMer v0.0.3
 " 
 " bernigf@gmail.com
 
@@ -97,7 +97,8 @@ function! GetCurrentFunction()
                 let function_name = substitute(line_content, '^async function\s\+', '', '')
             endif
 
-            let function_name_short = strpart(function_name, 0, 50)
+            let function_name_max = 25
+            let function_name_short = strpart(function_name, 0, function_name_max)
 
             " echo "Function name: " . function_name
             return function_name_short
@@ -118,9 +119,10 @@ endfunction
 
 set laststatus=2
 "set statusline=%<%#FileNameColor#%f\ >>\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
-set statusline=%<%#FileNameColor#\ %{StatusLineFile()}\ >>\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
+set statusline=%<%#FileNameColor#\ <\ %{StatusLineFile()}\ >\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#\ %h%m%r%=%b\ [%l,%v][%p%%]\ %L/%{line('$')}
 
-highlight FileNameColor guifg=black ctermfg=black guibg=white ctermbg=white
-highlight FunctionColor guifg=white ctermfg=white guibg=darkgreen ctermbg=darkgreen
-highlight StatusBarColor guifg=black ctermfg=black guibg=yellow ctermbg=yellow
+highlight FileNameColor guifg=black ctermfg=black guibg=white ctermbg=white gui=bold cterm=bold
+highlight FunctionColor guifg=white ctermfg=235 guibg=darkgreen ctermbg=darkgreen gui=bold cterm=bold
+"highlight FunctionColor guifg=white ctermfg=grey guibg=darkblue ctermbg=darkblue gui=bold cterm=bold
+highlight StatusBarColor guifg=black ctermfg=white guibg=235 ctermbg=235 gui=bold cterm=bold
 

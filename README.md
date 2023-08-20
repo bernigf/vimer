@@ -22,6 +22,10 @@ ChangeLog v0.0.2
 
 - Added support for async javascript function names
 - Trimming of larger than 25 characters filename paths
+
+ChangeLog v0.0.3
+
+- Improved statusline
 ```
 
 ## Installation
