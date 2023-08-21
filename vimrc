@@ -1,4 +1,4 @@
-" VIMer v0.0.3
+" VIMer v0.0.5
 " 
 " bernigf@gmail.com
 
@@ -15,7 +15,7 @@ set softtabstop=2   " Number of spaces used for indentation
 set shiftwidth=2    " Number of spaces used for each indentation level
 set expandtab 
 set autoindent
-filetype plugin indent on
+"filetype plugin indent on
 
 " colorscheme nord
 colorscheme afterglow
@@ -127,4 +127,70 @@ highlight FileNameColor guifg=black ctermfg=black guibg=white ctermbg=white gui=
 highlight FunctionColor guifg=white ctermfg=235 guibg=darkgreen ctermbg=darkgreen gui=bold cterm=bold
 "highlight FunctionColor guifg=white ctermfg=grey guibg=darkblue ctermbg=darkblue gui=bold cterm=bold
 highlight StatusBarColor guifg=black ctermfg=white guibg=235 ctermbg=235 gui=bold cterm=bold
+
+" =====
+" Line commenter mapped to M key (Shift+m)
+" =====
+"
+function! InsertComment()
+    " Store the current cursor position
+    let save_cursor = getpos('.')
+    
+    " Get the first character of the line
+    let first_char = getline('.')[0]
+
+    " Get the current line
+    let current_line = getline('.')
+
+    if current_line =~? '^\s*# '
+        " Line starts with '#', remove the '#'
+        normal! ^xx 
+    elseif current_line =~? '^\s*#\s*'
+        " Line starts with '#', remove the '#'
+        normal! ^x 
+    else
+        " Line doesn't start with '#', insert '#'
+        normal! I# 
+    endif
+ 
+    " Exit insert mode
+    stopinsert
+    
+    " Restore the cursor position
+    call setpos('.', save_cursor)
+endfunction
+
+" Map 'M' to call the custom function in normal mode
+nnoremap M :call InsertComment()<CR>
+
+" =====
+" Map backspace in REPLACE mode to delete a character
+" instead of moving a position to the left
+" =====
+
+set backspace=indent,eol,start
+
+function! DeleteInReplaceMode()
+
+  let col = col('.')
+  let line = getline('.')
+
+  if v:insertmode == 'i'
+    if col == 1
+      normal! kJ
+    elseif col == len(line)
+      normal! x
+    else
+      normal! hx
+    endif
+  endif
+
+  if v:insertmode == 'R'
+    let col = col('.')
+    if col > 1 | exe "normal! lX" | endif 
+  endif
+
+endfunc
+
+inoremap <silent> <BS> <C-O>:call DeleteInReplaceMode()<CR>
 

@@ -17,6 +17,10 @@ This project contains a set of lightweight vimscript functions to expand vim fun
 
 - **Indentation Improvement**: The default indentation has been adjusted to use a 2-space indent, offering a more compact and streamlined coding layout.
 
+- **Line commenter/uncommenter on any indentation level
+
+- Enables deleting in replace mode
+
 ```
 ChangeLog v0.0.2
 
@@ -27,6 +31,13 @@ ChangeLog v0.0.3
 
 - Improved statusline colors and trimming for vertical split
 - Improved statusline cursor/line/percentage
+
+ChangeLog v0.0.4
+- Mapping of key 'M' (Shift + m) to Python line commenter/uncommenter
+- Line commenter/uncommenter on any indentation level
+
+ChangeLog v0.0.5
+- New function to make backspace delete current char in replace mode instead of moving to the left one position
 ```
 
 ## Installation
