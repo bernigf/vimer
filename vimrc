@@ -1,4 +1,4 @@
-" VIMer v0.0.5
+" VIMer v0.0.5a
 " 
 " bernigf@gmail.com
 
@@ -124,9 +124,9 @@ highlight CursorColor guifg=green ctermfg=green gui=bold cterm=bold
 set statusline=%<%#FileNameColor#\ <\ %{StatusLineFile()}\ >\ %#FunctionColor#\ %{GetCurrentFunction()}\ %#StatusBarColor#%=\ %#CursorColor#%v%#StatusBarColor#:%l/%L\ [%p%%]
 
 highlight FileNameColor guifg=black ctermfg=black guibg=white ctermbg=white gui=bold cterm=bold
-highlight FunctionColor guifg=white ctermfg=235 guibg=darkgreen ctermbg=darkgreen gui=bold cterm=bold
+highlight FunctionColor guifg=white ctermfg=LightGray guibg=darkgreen ctermbg=darkgreen gui=bold cterm=bold
 "highlight FunctionColor guifg=white ctermfg=grey guibg=darkblue ctermbg=darkblue gui=bold cterm=bold
-highlight StatusBarColor guifg=black ctermfg=white guibg=235 ctermbg=235 gui=bold cterm=bold
+highlight StatusBarColor guifg=black ctermfg=white guibg=LightGray ctermbg=black gui=bold cterm=bold
 
 " =====
 " Line commenter mapped to M key (Shift+m)
