@@ -1,6 +1,3 @@
-" Vimer 0.0.7
-" bernigf@gmail.com
-
 syntax on
 set redrawtime=15000
 colorscheme pablo 
